@@ -25,10 +25,17 @@
     </head>
     <body class="antialiased">
         <h1><?php
-            try{
-                echo User::find(1)->phone;
-            }catch(Exception $e){
-                echo "Não achar celular";
+            $selectAll = User::all();
+            echo count($selectAll);
+            /*foreach ($variable as $key => $value) {
+                # code...
+            }*/
+            $userId = $selectAll[0]->id;
+            $user = User::findOr($userId, function(){
+                echo "Registro" . $userId . "não existe";
+            });
+            if(!empty($user)){
+                echo $user->phone;
             }
         ?></h1>
     </body>

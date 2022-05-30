@@ -1,3 +1,15 @@
 composer create-project --prefer-dist laravel/laravel eloquent_laravel
 ----------------------------------------------------------------------
 
+composer install
+biblioteca_laravel
+.env
+php artisan key:generate
+
+----------------------------------------------------------------------
+
+INSERT INTO `my_users`(`nome`) VALUES ('nome 1');
+INSERT INTO `my_users`(`nome`) VALUES ('nome 2');
+
+INSERT INTO `user_phone`(`phone_number`, `user_id`) VALUES ('11111111','1');
+INSERT INTO `user_phone`(`phone_number`, `user_id`) VALUES ('22222222','2');
