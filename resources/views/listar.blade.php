@@ -24,19 +24,34 @@
         </style>
     </head>
     <body class="antialiased">
-        <h1><?php
+        <div><?php
             $selectAll = User::all();
-            echo count($selectAll);
-            /*foreach ($variable as $key => $value) {
-                # code...
-            }*/
-            $userId = $selectAll[0]->id;
-            $user = User::findOr($userId, function(){
-                echo "Registro" . $userId . "não existe";
-            });
-            if(!empty($user)){
-                echo $user->phone;
+            $selectTotal = count($selectAll);
+
+            if($selectTotal){
+                echo "<table>";
+                    for($userIndex = $selectTotal - 1; $userIndex >= 0; $userIndex--){
+                        $user = getUser($userIndex,$selectAll);
+                        $numberOfPhones = count($user->phone);
+
+                        echo "<tr>";
+                            echo "<td>" . $user->nome . "</td>";
+                            for($phoneIndex = $numberOfPhones - 1; $phoneIndex >= 0; $phoneIndex--){
+                                echo "<td>" . $user->phone[$phoneIndex]->phone_number . "</td>";
+                            }
+                        echo "</tr>";
+                    }
+                echo "</table>";
             }
-        ?></h1>
+
+            function getUser($index, $query){
+                $userId = $query[$index]->id;
+                $user = User::findOr($userId, function(){
+                    return "Registro" . $userId . "não existe";
+                });
+                
+                return $user;
+            }
+        ?></div>
     </body>
 </html>
