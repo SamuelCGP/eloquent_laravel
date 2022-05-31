@@ -18,13 +18,34 @@
         </style>
 
         <style>
+            html{
+                height: 100%;
+            }
             body {
                 font-family: 'Nunito', sans-serif;
+                background-color: black;
+                height: 100%;
+            }
+            .container{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            table {
+                background-color: white;
+            }
+            td{
+                font-size: 20px;
+            }
+            .username{
+                background-color: lightgray;
             }
         </style>
     </head>
     <body class="antialiased">
-        <div><?php
+        <div class="container"><?php
             $selectAll = User::all();
             $selectTotal = count($selectAll);
 
@@ -35,7 +56,7 @@
                         $numberOfPhones = count($user->phone);
 
                         echo "<tr>";
-                            echo "<td>" . $user->nome . "</td>";
+                            echo "<td class='username'>" . $user->nome . "</td>";
                             for($phoneIndex = $numberOfPhones - 1; $phoneIndex >= 0; $phoneIndex--){
                                 echo "<td>" . $user->phone[$phoneIndex]->phone_number . "</td>";
                             }
